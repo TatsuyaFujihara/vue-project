@@ -1,16 +1,15 @@
 <template>
   <div>
-    <p>
-      {{msg}}
-    </p>
+    <router-link to="step1">最初の質問へ</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      msg: 'Hello World!'
+  methods: {
+    toStep1(){
+      this.$router.push('/step1')
     }
   }
 }
