@@ -11,9 +11,19 @@
         <label class="mr-2"><input name="select" type="radio">女性</label>
       </div>
       <h6 class="card-title text-primary mt-3">- 生年月日 -</h6>
-      
-      <date-dropdown default="2000-01-01" min="1960" max="2020" v-model="selectedDate" months-names="1月, 2月, 3月, 4月, 5月, 6月, 7月, 8月, 9月, 10月, 11月, 12月"/>
-      <p>選択された日付<strong>{{ selectedDate }}</strong></p>
+
+      <select v-model="selectedYear">
+        <option v-for="year in YearList" :key="year" :value="year">{{ year }}年</option>
+      </select>
+   
+      <select class="ml-3" v-model="selectedMonth">
+        <option v-for="month in MonthList" :key="month" :value="month">{{ month }}月</option>
+      </select>
+
+      <select class="ml-3" v-model="selectedDay">
+        <option v-for="day in DayList" :key="day" :value="day">{{ day }}日</option>
+      </select>
+
     </div>
   </div>
 
@@ -23,13 +33,40 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      selectedDate: ''
+      YearList: [],
+      MonthList: [],
+      DayList: [],
+      numYear: 100,
+      numMonth: 12,
+      numDay: 31
     }
   },
+  created() {
+    const year = new Date().getFullYear()
+    const month = 1
+    const day = 1
+//現在より100年前までの年を表示
+    for (let i = 0; i < this.numYear; i++) {
+      this.YearList.unshift(year - i)
+    }
+    this.selectedYear = year;
+
+//1月から12月までを表示
+    for (let i = 0; i < this.numMonth; i++) {
+      this.MonthList.unshift(month + i)
+    }
+    this.selectedMonth = month;
+
+//1日から31日までを表示
+    for (let i = 0; i < this.numDay; i++) {
+      this.DayList.unshift(day + i)
+    }
+    this.selectedDay = day;
+  },
   methods: {
-     Next(){
+    Next(){
         this.$router.push("/step2")
     }
   }
