@@ -36,36 +36,33 @@ export default {
   },
   computed: {
     gender() {
-      return this.$store.state.gender;
+      return this.$store.getters.gender;
     },
     birthYear() {
-      return this.$store.state.birthY;
+      return this.$store.getters.birthY;
     },
     birthMonth() {
-      return this.$store.state.birthM;
+      return this.$store.getters.birthM;
     },
     birthDay() {
-      return this.$store.state.birthD;
+      return this.$store.getters.birthD;
     },
     answer1() {
-      return this.$store.state.answer1;
+      return this.$store.getters.answer1;
     },
     answer2() {
-      return this.$store.state.answer2;
+      return this.$store.getters.answer2;
     },
     answer3() {
-      return this.$store.state.answer3;
+      return this.$store.getters.answer3;
     },
     content() {
-      return this.$store.state.Q_content;
+      return this.$store.getters.Q_content;
     },
   },
   methods: {
     Back(){
         this.$router.push("/step2")
-    },
-    Send(){
-      
     }
   }
 }
